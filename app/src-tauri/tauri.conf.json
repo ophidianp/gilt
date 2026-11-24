@@ -1,0 +1,42 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "gilt",
+  "version": "0.3.0",
+  "identifier": "app.gilt.desktop",
+  "build": {
+    "beforeDevCommand": "npm run dev",
+    "devUrl": "http://localhost:1420",
+    "beforeBuildCommand": "npm run build",
+    "frontendDist": "../dist"
+  },
+  "app": {
+    "windows": [
+      {
+        "title": "gilt",
+        "width": 1280,
+        "height": 840,
+        "minWidth": 880,
+        "minHeight": 600,
+        "center": true,
+        "decorations": false,
+        "backgroundColor": "#0A0907"
+      }
+    ],
+    "security": {
+      "csp": "default-src 'self' ipc: http://ipc.localhost; style-src 'self' 'unsafe-inline'; font-src 'self' data:; img-src 'self' data:"
+    }
+  },
+  "bundle": {
+    "active": true,
+    "targets": ["nsis"],
+    "shortDescription": "Live stock prices. No trading. No news.",
+    "longDescription": "gilt shows live stock prices for the stocks you watch and the biggest companies, and nothing else.",
+    "icon": [
+      "icons/32x32.png",
+      "icons/128x128.png",
+      "icons/128x128@2x.png",
+      "icons/icon.icns",
+      "icons/icon.ico"
+    ]
+  }
+}

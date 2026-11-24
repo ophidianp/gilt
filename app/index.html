@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>gilt</title>
+</head>
+<body>
+  <header class="titlebar" data-tauri-drag-region>
+    <a class="brand" href="#/" aria-label="gilt, portfolio"><svg class="wm" id="wordmark" aria-hidden="true"></svg></a>
+    <div class="search" id="search-box">
+      <label class="sr" for="search">Search any stock</label>
+      <svg class="search-ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="21" y2="21"/></svg>
+      <input id="search" type="search" placeholder="Search any stock to trade" autocomplete="off" spellcheck="false"
+        role="combobox" aria-expanded="false" aria-controls="search-results" aria-autocomplete="list">
+      <kbd class="search-kbd" aria-hidden="true">Ctrl K</kbd>
+      <div class="search-results" id="search-results" role="listbox" hidden></div>
+    </div>
+    <div class="status" id="status" data-tauri-drag-region>
+      <span class="dot"></span><span id="status-text">Connecting…</span>
+    </div>
+    <div class="winctl">
+      <button type="button" id="win-min" aria-label="Minimize">
+        <svg viewBox="0 0 10 10" aria-hidden="true"><line x1="0" y1="5" x2="10" y2="5"/></svg>
+      </button>
+      <button type="button" id="win-max" aria-label="Maximize">
+        <svg class="ico-max" viewBox="0 0 10 10" aria-hidden="true"><rect x="0.5" y="0.5" width="9" height="9" rx="1.5"/></svg>
+        <svg class="ico-restore" viewBox="0 0 10 10" aria-hidden="true"><rect x="0.5" y="2.5" width="7" height="7" rx="1.2"/><path d="M2.5 2.5V1.7a1.2 1.2 0 0 1 1.2-1.2h4.6a1.2 1.2 0 0 1 1.2 1.2v4.6a1.2 1.2 0 0 1-1.2 1.2h-.8"/></svg>
+      </button>
+      <button type="button" id="win-close" class="close" aria-label="Close">
+        <svg viewBox="0 0 10 10" aria-hidden="true"><line x1="0" y1="0" x2="10" y2="10"/><line x1="10" y1="0" x2="0" y2="10"/></svg>
+      </button>
+    </div>
+  </header>
+  <div class="shell">
+    <aside class="side" aria-label="Sidebar">
+      <a class="acct" id="acct" href="#/">
+        <span class="eyebrow">Paper account</span>
+        <span class="acct-val num" id="acct-val">—</span>
+        <span class="acct-chg num" id="acct-chg"></span>
+      </a>
+      <nav class="side-nav" aria-label="Sections">
+        <a href="#/" data-tab="portfolio"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19V9M10 19V5M16 19v-7M22 19H2"/></svg>Portfolio</a>
+        <a href="#/markets" data-tab="markets"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 17l5-6 4 3 7-9"/><path d="M15 5h4v4"/></svg>Markets</a>
+        <a href="#/orders" data-tab="orders"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 6h12M8 12h12M8 18h12M4 6h.01M4 12h.01M4 18h.01"/></svg>Orders<span class="badge num" id="open-count" hidden></span></a>
+        <a href="#/settings" data-tab="settings"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg>Settings</a>
+      </nav>
+      <div class="side-watch">
+        <div class="side-head"><span class="eyebrow">Watchlist</span><button type="button" class="ib" id="watch-add" aria-label="Add a stock to your watchlist"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></button></div>
+        <ul class="watch-list" id="watch-list"></ul>
+      </div>
+      <p class="side-note">Pretend money on real prices.<br>Not investment advice.</p>
+    </aside>
+    <main id="view" tabindex="-1"></main>
+  </div>
+  <script type="module" src="/src/main.ts"></script>
+</body>
+</html>
